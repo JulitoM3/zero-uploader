@@ -33,7 +33,7 @@ class compranet_21 extends CsvSeeder
             'fecha_publicacion',
             'fecha_apertura',
             'caracter_procedimiento',
-            'tipo_contratacion',
+            'tipo_de_contratacion',
             'tipo_procedimiento',
             'medio_utilizado_propuestas',
             'codigo_contrato',

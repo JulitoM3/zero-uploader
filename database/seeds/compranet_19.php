@@ -32,9 +32,9 @@ class compranet_19 extends CsvSeeder
             'fecha_fallo',
             'fecha_publicacion',
             'fecha_apertura',
-            'tipo_procedimiento',
             'caracter_procedimiento',
-            'tipo_contratacion',
+            'tipo_de_contratacion',
+            'tipo_procedimiento',
             'medio_utilizado_propuestas',
             'codigo_contrato',
             'numero_control_contrato',
@@ -56,6 +56,10 @@ class compranet_19 extends CsvSeeder
             'rfc',
             'proveedor_contratista',
             'estratificacion',
+            'clave_pais',
+            'rfc_verificado_sat',
+            'credito_externo',
+            'organismo_financiero',
             'url_compranet'
         ];
         $this->chunk = 1000;
