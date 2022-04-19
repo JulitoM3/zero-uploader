@@ -41,7 +41,7 @@ class CreateCompranetTable extends Migration
             $table->longText('descripcion_contrato')->nullable();
             $table->longText('fecha_inicio_contrato')->nullable();
             $table->longText('fecha_fin_contrato')->nullable();
-            $table->longText('importe_contrato')->nullable();
+            $table->double('importe_contrato', 15, 2)->nullable();
             $table->longText('moneda')->nullable();
             $table->enum('estatus_contrato', ['EXPIRADO', 'ACTIVO', 'TERMINADO'])->nullable();
             $table->boolean('convenio_modificatorio')->nullable();
