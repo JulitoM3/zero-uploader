@@ -10,9 +10,9 @@ class compranet_21 extends CsvSeeder
 {
     public function __construct()
     {
-        $this->file = '/database/csvs/2021/.csv';
+        $this->file = '/database/csvs/2021/2021.csv';
         $this->tablename = 'compranet';
-        $this->truncate = true;
+        $this->truncate = false;
         $this->delimiter = '~';
         $this->header = false;
         $this->mapping = [
