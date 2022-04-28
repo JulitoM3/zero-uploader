@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             \Database\Seeders\compranet_18::class,
-            // \Database\Seeders\compranet_19::class,
-            //\Database\Seeders\compranet_20::class,
-            //\Database\Seeders\compranet_21::class,
+            \Database\Seeders\compranet_19::class,
+            \Database\Seeders\compranet_20::class,
+            \Database\Seeders\compranet_21::class,
             //\Database\Seeders\compranet_22::class
             //\Database\Seeders\abastos::class,
-            //OrdenesReposicion::class
+            OrdenesReposicion::class
         ]);
     }
 }

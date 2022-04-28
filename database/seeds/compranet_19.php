@@ -10,7 +10,7 @@ class compranet_19 extends CsvSeeder
 {
     public function __construct()
     {
-        $this->file = '/database/csvs/2019/Contratos2019.csv';
+        $this->file = '/database/csvs/2019/.csv';
         $this->tablename = 'compranet';
         $this->truncate = true;
         $this->delimiter = ';';

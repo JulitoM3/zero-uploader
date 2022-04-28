@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Compranet;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use JeroenZwart\CsvSeeder\CsvSeeder;
@@ -9,14 +11,407 @@ use JeroenZwart\CsvSeeder\CsvSeeder;
 class OrdenesReposicion extends CsvSeeder
 {
 
+    private $contrato;
+
     public function __construct()
     {
-        $this->file = '/database/csvs/abastos/ordenes.csv';
+        $this->file = '/database/csvs/abastos/.csv';
         $this->tablename = 'ordenes_reposicion';
         $this->truncate = true;
         $this->delimiter = '~';
         $this->header = true;
+        $this->parsers = [
+            'fecha_actualizacion' => function ($value) {
+                list($d, $m, $yearTime) = explode("/", $value);
+                list($year, $time) = explode(" ", $yearTime);
+                list($h, $min) = explode(":", $time);
 
+                $timeStamp = Carbon::create($year, $m, $d, $h, $min);
+                return $timeStamp->toDateTimeString();
+            },
+            'fecha_inicio_contrato' => function ($value) { //date
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+            },
+            'fecha_termino_contrato' => function ($value) { //date
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+            },
+            'numero_contrato' => function ($value) {
+                $this->contrato = $value; //asignamos el valor para attacharlo al id
+            },
+            'contrato_id' => function ($value) {
+                $contratoCompranet = Compranet::where('numero_control_contrato', $this->contrato)->first(['id']);
+
+                return $contratoCompranet->id ?? null;
+            },
+            'monto_minimo_contrato_sin_iva' => function ($value) { //decimal
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval($value);
+                }
+
+                return $number;
+            },
+            'monto_maximo_contrato_sin_iva' => function ($value) {//decimal
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'cantidad_minima_piezas' => function ($value) {
+                return intval(str_replace('.', '', $value));
+            },
+            'cantidad_maxima_piezas' => function ($value) {
+                return intval(str_replace('.', '', $value));
+            },
+            'monto_minimo_clave_sin_iva' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'monto_maximo_clave_sin_iva' => function ($value) { //decimalclear
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'cantidad_presentacion' => function ($value) {
+                if (empty($value)) {
+                    return $value;
+                }
+                return intval($value);
+            },
+            'fecha_expedicion' => function ($value) { //timestamp
+                if (empty($value)) {
+                    return $value;
+                }
+                list($d, $m, $yearTime) = explode("/", $value);
+                list($year, $time) = explode(" ", $yearTime);
+                list($h, $min) = explode(":", $time);
+
+                $timeStamp = Carbon::create($year, $m, $d, $h, $min);
+                return $timeStamp->toDateTimeString();
+            },
+            'fecha_www' => function ($value) { //timestamp
+                if (empty($value)) {
+                    return $value;
+                }
+                list($d, $m, $yearTime) = explode("/", $value);
+                list($year, $time) = explode(" ", $yearTime);
+                list($h, $min) = explode(":", $time);
+
+                $timeStamp = Carbon::create($year, $m, $d, $h, $min);
+                return $timeStamp->toDateTimeString();
+            },
+            'fecha_confirmacion' => function ($value) {//timestamp
+                if (empty($value)) {
+                    return $value;
+                }
+                list($d, $m, $yearTime) = explode("/", $value);
+                list($year, $time) = explode(" ", $yearTime);
+                list($h, $min) = explode(":", $time);
+
+                $timeStamp = Carbon::create($year, $m, $d, $h, $min);
+                return $timeStamp->toDateTimeString();
+            },
+            'fecha_entrega' => function ($value) { //date
+                if (empty($value)) {
+                    return $value;
+                }
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+            },
+
+            'fecha_atencion' => function ($value) { //date
+                if (empty($value)) {
+                    return $value;
+                }
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+            },
+            'fecha_sello_alta_qr' => function ($value) {//date
+                if (empty($value)) {
+                    return $value;
+                }
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+            },
+            'fecha_cancelacion' => function ($value) {
+                if (empty($value)) {
+                    return $value;
+                }
+                list($d, $m, $yearTime) = explode("/", $value);
+                list($year, $time) = explode(" ", $yearTime);
+                list($h, $min) = explode(":", $time);
+
+                $timeStamp = Carbon::create($year, $m, $d, $h, $min);
+                return $timeStamp->toDateTimeString();
+            },
+            'fecha_entrega_inicial' => function ($value) { //text
+                if (empty($value)) {
+                    return $value;
+                }
+                return $value;
+            },
+            'fecha_entrega_ampliada' => function ($value) { //text
+                if (empty($value)) {
+                    return $value;
+                }
+                return $value;
+            },
+            'precio_compra' => function ($value) { //decimal
+                if (empty($value)) {
+                    return $value;
+                }
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'cantidad_solicitada' => function ($value) {
+                if (empty($value)) {
+                    return $value;
+                }
+                return intval($value);
+            },
+            'cantidad_comprometida' => function ($value) {
+                if (empty($value)) {
+                    return $value;
+                }
+                return intval($value);
+            },
+            'cantidad_atendida' => function ($value) {
+                if (empty($value)) {
+                    return $value;
+                }
+                return intval($value);
+            },
+            'importe_solicitado_iva' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'importe_comprometido_iva' => function ($value) {
+
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'importe_atendido_iva' => function ($value) {
+
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+            },
+            'importe_solicitado_sin_iva' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'importe_comprometido_sin_iva' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'importe_atendido_sin_iva' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'saldo_contrato' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'saldo_contrato_porcentaje' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval(str_replace(".", '', $value));
+                }
+
+                return $number;
+            },
+            'fecha_firma_contrato' => function ($value) {
+                if (empty($value)) {
+                    return $value;
+                }
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+            },
+            'fecha_alta_imss' => function ($value) { //text
+                if (empty($value)) {
+                    return $value;
+                }
+                return $value;
+            }
+        ];
         $this->mapping = [
             'clas_ptal_origen',
             'nombre_ooad',
@@ -82,6 +477,7 @@ class OrdenesReposicion extends CsvSeeder
             'zona_operador_logistico',
             'cantidad_alta_imss',
             'fecha_alta_imss',
+            'contrato_id'
         ];
     }
 
@@ -95,5 +491,6 @@ class OrdenesReposicion extends CsvSeeder
         // Recommended when importing larger CSVs
         DB::disableQueryLog();
         parent::run();
+
     }
 }
