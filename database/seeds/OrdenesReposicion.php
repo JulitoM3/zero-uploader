@@ -15,7 +15,7 @@ class OrdenesReposicion extends CsvSeeder
 
     public function __construct()
     {
-        $this->file = '/database/csvs/abastos/.csv';
+        $this->file = '/database/csvs/abastos/ordenes.csv';
         $this->tablename = 'ordenes_reposicion';
         $this->truncate = true;
         $this->delimiter = '~';
@@ -37,6 +37,7 @@ class OrdenesReposicion extends CsvSeeder
             },
             'numero_contrato' => function ($value) {
                 $this->contrato = $value; //asignamos el valor para attacharlo al id
+                return $value;
             },
             'contrato_id' => function ($value) {
                 $contratoCompranet = Compranet::where('numero_control_contrato', $this->contrato)->first(['id']);
