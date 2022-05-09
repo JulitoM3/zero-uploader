@@ -16,13 +16,14 @@ class CreateAbastosTable extends Migration
         Schema::create('abastos', function (Blueprint $table) {
             $table->id();
             $table->string('clas_ptal_origen')->nullable();
-            $table->string('ooads')->nullable();
+            $table->string('ooad')->nullable();
+            $table->timestamp('fecha_actualizacion')->nullable();
             $table->string('numero_contrato')->nullable();
             $table->string('numero_dictamen_definitivo')->nullable();
-            $table->string('monto_maximo_con_iva')->nullable();
-            $table->string('monto_minimo_con_iva')->nullable();
-            $table->string('monto_maximo_clave_con_iva')->nullable();
-            $table->string('monto_minimo_clave_con_iva')->nullable();
+            $table->decimal('monto_maximo_contrato_con_iva', 15, 2)->nullable();
+            $table->decimal('monto_minimo_contrato_con_iva', 15, 2)->nullable();
+            $table->decimal('monto_maximo_clave_con_iva', 15, 2)->nullable();
+            $table->decimal('monto_minimo_clave_con_iva', 15, 2)->nullable();
             $table->string('numero_licitacion')->nullable();
             $table->string('evento_compranet')->nullable();
             $table->string('porcentaje_sancion_contrato')->nullable();
@@ -30,8 +31,8 @@ class CreateAbastosTable extends Migration
             $table->string('numero_proveedor')->nullable();
             $table->string('rfc_proveedor')->nullable();
             $table->string('razon_social')->nullable();
-            $table->string('fecha_inicio')->nullable();
-            $table->string('fecha_termino')->nullable();
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_termino')->nullable();
             $table->string('tipo_contrato')->nullable();
             $table->string('estado_contrato')->nullable();
             $table->string('estatus_clave')->nullable();
@@ -48,23 +49,23 @@ class CreateAbastosTable extends Migration
             $table->string('des_partida_presupuestal')->nullable();
             $table->string('cuadro_basico_sai')->nullable();
             $table->string('cuenta_contable')->nullable();
-            $table->string('precio_neto_contrato')->nullable();
-            $table->string('cantidad_maxima_clave')->nullable();
-            $table->string('cantidad_contratacion_original')->nullable();
-            $table->string('cantidad_minimo_clave')->nullable();
-            $table->string('cantidad_ejercida_o_solicitada')->nullable();
-            $table->string('cant_solic_vigente_en_transito')->nullable();
-            $table->string('cantidad_disponible')->nullable();
-            $table->string('cantidad_atendida')->nullable();
-            $table->string('cantidad_de_piezas_topadas')->nullable();
+            $table->decimal('precio_neto_contrato', 15, 2)->nullable();
+            $table->decimal('cantidad_maxima_clave', 15, 2)->nullable();
+            $table->decimal('cantidad_contratacion_original', 15, 2)->nullable();
+            $table->decimal('cantidad_minimo_clave', 15, 2)->nullable();
+            $table->decimal('cantidad_ejercida_o_solicitada', 15, 2)->nullable();
+            $table->decimal('cant_solic_vigente_en_transito', 15, 2)->nullable();
+            $table->decimal('cantidad_disponible', 15, 2)->nullable();
+            $table->decimal('cantidad_atendida', 15, 2)->nullable();
+            $table->decimal('cantidad_de_piezas_topadas', 15, 2)->nullable();
             $table->string('porcentaje_ejercido')->nullable();
             $table->string('porcentaje_topado')->nullable();
             $table->string('porcen_atencion_sin_transito')->nullable();
-            $table->string('fecha_dictamen')->nullable();
-            $table->string('saldo_disponible_dictamen_prei')->nullable();
-            $table->string('monto_ejercido_dictamen_sai')->nullable();
-            $table->string('saldo_disponible_dictamen_sai')->nullable();
-            $table->string('monto_pagado')->nullable();
+            $table->date('fecha_dictamen')->nullable();
+            $table->decimal('saldo_disponible_dictamen_prei', 15, 2)->nullable();
+            $table->decimal('monto_ejercido_dictamen_sai', 15, 2)->nullable();
+            $table->decimal('saldo_disponible_dictamen_sai', 15, 2)->nullable();
+            $table->decimal('monto_pagado', 15, 2)->nullable();
             $table->string('iva')->nullable();
 
 

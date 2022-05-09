@@ -17,9 +17,73 @@ class abastos extends CsvSeeder
         $this->truncate = true;
         $this->delimiter = ';';
         $this->header = true;
+        $this->parsers = [
+            'fecha_actualizacion' => function ($value) {
+
+            },
+            'monto_minimo_contrato_con_iva' => function ($value) {
+
+            },
+            'monto_maximo_clave_con_iva' => function ($value) {
+
+            },
+            'monto_minimo_clave_con_iva' => function ($value) {
+
+            },
+            'fecha_inicio' => function ($value) {
+
+            },
+            'fecha_termino' => function ($value) {
+
+            },
+            'precio_neto_contrato' => function ($value) {
+
+            },
+            'cantidad_maxima_clave' => function ($value) {
+
+            },
+            'cantidad_contratacion_original' => function ($value) {
+
+            },
+            'cantidad_minimo_clave' => function ($value) {
+
+            },
+            'cantidad_ejercida_o_solicitada' => function ($value) {
+
+            },
+            'cant_solic_vigente_en_transito' => function ($value) {
+
+            },
+            'cantidad_disponible' => function ($value) {
+
+            },
+            'cantidad_atendida' => function ($value) {
+
+            },
+            'cantidad_de_piezas_topadas' => function ($value) {
+
+            },
+            'fecha_dictamen' => function($value){
+
+            },
+            'saldo_disponible_dictamen_prei' => function($value){
+
+            },
+            'monto_ejercido_dictamen_sai' => function($value){
+
+            },
+            'saldo_disponible_dictamen_sai' => function($value){
+
+            },
+            'monto_pagado' => function($value){
+
+            },
+
+        ];
         $this->mapping = [
             'clas_ptal_origen',
-            'ooads',
+            'ooad',
+            'fecha_actualizacion',
             'numero_contrato',
             'numero_dictamen_definitivo',
             'monto_maximo_con_iva',
