@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Compranet;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,7 @@ use JeroenZwart\CsvSeeder\CsvSeeder;
 
 class abastos extends CsvSeeder
 {
+    public $contrato_id = null;
 
     public function __construct()
     {
@@ -19,6 +21,16 @@ class abastos extends CsvSeeder
         $this->delimiter = ';';
         $this->header = true;
         $this->parsers = [
+            'numero_contrato' => function ($value) {
+                $this->contrato_id = $value;
+                return $value;
+            },
+            'id' => function ($value) {
+                return Compranet::query()
+                        ->where('numero_control_contrato', $this->contrato_id)
+                        ->first(['id'])->id ?? null;
+
+            },
             'fecha_actualizacion' => function ($value) {
                 list($d, $m, $yearTime) = explode("/", $value);
                 list($year, $time) = explode(" ", $yearTime);
@@ -269,6 +281,7 @@ class abastos extends CsvSeeder
             'saldo_disponible_dictamen_sai',
             'monto_pagado',
             'iva',
+            'id'
         ];
         $this->chunk = 1000;
         /*dd($this->file);*/
