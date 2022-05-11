@@ -16,6 +16,7 @@ class divisionContratos extends CsvSeeder
         $this->file = '/database/csvs/division contratos/procedimientos.csv';
         $this->delimiter = '~';
         $this->tablename = 'division_contratos';
+        $this->truncate = false;
         $this->header = false;
         $this->parsers = [
             'consolidada' => function ($value) {

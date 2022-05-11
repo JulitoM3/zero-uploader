@@ -19,7 +19,7 @@ class OrdenesReposicion extends CsvSeeder
         $this->tablename = 'ordenes_reposicion';
         $this->truncate = true;
         $this->delimiter = '~';
-        $this->header = true;
+        $this->header = false;
         $this->parsers = [
             'fecha_actualizacion' => function ($value) {
                 list($d, $m, $yearTime) = explode("/", $value);

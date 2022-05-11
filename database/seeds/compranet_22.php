@@ -12,7 +12,7 @@ class compranet_22 extends CsvSeeder
     {
         $this->file = '/database/csvs/2022/Contratos2022.csv';
         $this->tablename = 'compranet';
-        $this->truncate = true;
+        $this->truncate = false;
         $this->delimiter = '~';
         $this->header = false;
         $this->parsers = [

@@ -18,8 +18,8 @@ class abastos extends CsvSeeder
 
         $this->tablename = 'abastos';
         $this->truncate = true;
-        $this->delimiter = ';';
-        $this->header = true;
+        $this->delimiter = '~';
+        $this->header = false;
         $this->parsers = [
             'numero_contrato' => function ($value) {
                 $this->contrato_id = $value;
