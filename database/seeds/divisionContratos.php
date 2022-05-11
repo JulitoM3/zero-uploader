@@ -8,6 +8,7 @@ use JeroenZwart\CsvSeeder\CsvSeeder;
 
 class divisionContratos extends CsvSeeder
 {
+
     public function __construct()
     {
         $this->mapping = [
