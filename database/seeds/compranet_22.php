@@ -13,8 +13,27 @@ class compranet_22 extends CsvSeeder
         $this->file = '/database/csvs/2022/Contratos2022.csv';
         $this->tablename = 'compranet';
         $this->truncate = true;
-        $this->delimiter = ';';
-        $this->header = true;
+        $this->delimiter = '~';
+        $this->header = false;
+        $this->parsers = [
+            'importe_contrato' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+                    $int = intval($int);
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval($value);
+                }
+
+                return $number;
+            },
+        ];
         $this->mapping = [
             'orden',
             'siglas_institucion',

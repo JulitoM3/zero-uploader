@@ -15,6 +15,25 @@ class compranet_21 extends CsvSeeder
         $this->truncate = false;
         $this->delimiter = '~';
         $this->header = false;
+        $this->parsers = [
+            'importe_contrato' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+                    $int = intval($int);
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = intval($value);
+                }
+
+                return $number;
+            },
+        ];
         $this->mapping = [
             'orden',
             'siglas_institucion',
