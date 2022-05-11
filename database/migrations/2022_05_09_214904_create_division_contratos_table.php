@@ -20,8 +20,8 @@ class CreateDivisionContratosTable extends Migration
             $table->string('comprador')->nullable();
             $table->string('requirente')->nullable();
             $table->string('tecnico')->nullable();
-            $table->string('nom_proc')->nullable();
-            $table->string('nom_proc_corto')->nullable();
+            $table->longText('nom_proc')->nullable();
+            $table->longText('nom_proc_corto')->nullable();
             $table->string('estatus')->nullable();
             $table->boolean('consolidada')->nullable();
             $table->string('dependencia_entidad_consolida')->nullable();
@@ -48,7 +48,7 @@ class CreateDivisionContratosTable extends Migration
             $table->string('num_of_solicitud_contratacion')->nullable();
             $table->timestamp('fecha_num_of_solicitud_contratacion')->nullable();
             $table->string('tipo_suficiencia_presupuestal')->nullable();
-            $table->string('num_of_suficiencia_presupuestal')->nullable();
+            $table->longText('num_of_suficiencia_presupuestal')->nullable();
             $table->timestamp('fecha_num_of_suficiencia_presupuestal')->nullable();
             $table->decimal('monto_suficiencia_presupuestal_oficio', 15, 2)->nullable();
             $table->decimal('monto_suficiencia_presupuestal_este_procedimiento', 15, 2)->nullable();
