@@ -58,7 +58,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval($value);
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -77,16 +77,16 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
             },
             'cantidad_minima_piezas' => function ($value) {
-                return intval(str_replace('.', '', $value));
+                return intval(str_replace(',', '', $value));
             },
             'cantidad_maxima_piezas' => function ($value) {
-                return intval(str_replace('.', '', $value));
+                return intval(str_replace(',', '', $value));
             },
             'monto_minimo_clave_sin_iva' => function ($value) {
                 $number = 0;
@@ -102,7 +102,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -121,7 +121,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -224,7 +224,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -233,19 +233,19 @@ class OrdenesReposicion extends CsvSeeder
                 if (empty($value)) {
                     return $value;
                 }
-                return intval($value);
+                return floatval(str_replace(",", "", $value));
             },
             'cantidad_comprometida' => function ($value) {
                 if (empty($value)) {
                     return $value;
                 }
-                return intval($value);
+                return floatval(str_replace(",", "", $value));
             },
             'cantidad_atendida' => function ($value) {
                 if (empty($value)) {
                     return $value;
                 }
-                return intval($value);
+                return floatval(str_replace(",", "", $value));
             },
             'importe_solicitado_iva' => function ($value) {
                 $number = 0;
@@ -261,7 +261,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -281,7 +281,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -301,7 +301,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
             },
@@ -319,7 +319,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -338,7 +338,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -376,7 +376,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;
@@ -395,7 +395,7 @@ class OrdenesReposicion extends CsvSeeder
 
                     $number = $int + $decimal;
                 } else {
-                    $number = intval(str_replace(".", '', $value));
+                    $number = floatval($value);
                 }
 
                 return $number;

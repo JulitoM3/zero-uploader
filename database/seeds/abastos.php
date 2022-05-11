@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use JeroenZwart\CsvSeeder\CsvSeeder;
@@ -19,66 +20,201 @@ class abastos extends CsvSeeder
         $this->header = true;
         $this->parsers = [
             'fecha_actualizacion' => function ($value) {
+                list($d, $m, $yearTime) = explode("/", $value);
+                list($year, $time) = explode(" ", $yearTime);
+                list($h, $min) = explode(":", $time);
 
+                $timeStamp = Carbon::create($year, $m, $d, $h, $min);
+                return $timeStamp->toDateTimeString();
             },
             'monto_minimo_contrato_con_iva' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
 
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = floatval($value);
+                }
+
+                return $number;
             },
             'monto_maximo_clave_con_iva' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
 
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = floatval($value);
+                }
+
+                return $number;
             },
             'monto_minimo_clave_con_iva' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
 
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = floatval($value);
+                }
+
+                return $number;
             },
             'fecha_inicio' => function ($value) {
-
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
             },
             'fecha_termino' => function ($value) {
-
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
             },
             'precio_neto_contrato' => function ($value) {
-
+                return floatval($value);
             },
             'cantidad_maxima_clave' => function ($value) {
-
+                return intval(str_replace(",", "", $value));
             },
             'cantidad_contratacion_original' => function ($value) {
+                return intval(str_replace(",", "", $value));
 
             },
             'cantidad_minimo_clave' => function ($value) {
+                return intval(str_replace(",", "", $value));
 
             },
             'cantidad_ejercida_o_solicitada' => function ($value) {
+                return intval(str_replace(",", "", $value));
 
             },
             'cant_solic_vigente_en_transito' => function ($value) {
+                return intval(str_replace(",", "", $value));
 
             },
             'cantidad_disponible' => function ($value) {
+                return intval(str_replace(",", "", $value));
 
             },
             'cantidad_atendida' => function ($value) {
+                return intval(str_replace(",", "", $value));
 
             },
             'cantidad_de_piezas_topadas' => function ($value) {
+                return intval(str_replace(",", "", $value));
 
             },
-            'fecha_dictamen' => function($value){
-
+            'porcentaje_ejercido' => function ($value) {
+                return floatval($value);
             },
-            'saldo_disponible_dictamen_prei' => function($value){
-
+            'porcentaje_topado' => function ($value) {
+                return floatval($value);
             },
-            'monto_ejercido_dictamen_sai' => function($value){
-
+            'porcen_atencion_sin_transito' => function ($value) {
+                return floatval($value);
             },
-            'saldo_disponible_dictamen_sai' => function($value){
-
+            'fecha_dictamen' => function ($value) {
+                return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
             },
-            'monto_pagado' => function($value){
+            'saldo_disponible_dictamen_prei' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
 
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = floatval($value);
+                }
+
+                return $number;
             },
+            'monto_ejercido_dictamen_sai' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
 
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = floatval($value);
+                }
+
+                return $number;
+            },
+            'saldo_disponible_dictamen_sai' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = floatval($value);
+                }
+
+                return $number;
+            },
+            'monto_pagado' => function ($value) {
+                $number = 0;
+                if (empty($value)) {
+                    return null;
+                }
+
+                if (str_contains($value, ",")) {
+                    list($int, $decimal) = explode(",", $value);
+
+                    $int = intval(str_replace(".", '', $int));
+                    $decimal = ("." . $decimal);
+
+                    $number = $int + $decimal;
+                } else {
+                    $number = floatval($value);
+                }
+
+                return $number;
+            },
+            'iva' => function ($value) {
+                return floatval($value);
+            }
         ];
         $this->mapping = [
             'clas_ptal_origen',
