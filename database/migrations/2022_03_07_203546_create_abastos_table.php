@@ -67,7 +67,8 @@ class CreateAbastosTable extends Migration
             $table->decimal('saldo_disponible_dictamen_sai', 15, 2)->nullable();
             $table->decimal('monto_pagado', 15, 2)->nullable();
             $table->string('iva')->nullable();
-
+            $table->unsignedBigInteger('contrato_id')->nullable();
+            $table->foreign('contrato_id')->references('id')->on('compranet');
 
             $table->timestamps();
         });
