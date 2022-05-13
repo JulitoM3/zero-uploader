@@ -18,12 +18,10 @@ class CreateAltasTable extends Migration
             $table->longText('clas_ptal_origen')->nullable();
             $table->longText('nombre_ooad')->nullable();
             $table->longText('estado_ooad')->nullable();
-            $table->longText('clas_ptal_origen')->nullable();
             $table->timestamp('fecha_registro')->nullable();
             $table->longText('clas_ptal_entrega')->nullable();
             $table->longText('nombre_unidad_entrega')->nullable();
             $table->longText('tipo_reporte')->nullable();
-            $table->longText('clas_ptal_entrega')->nullable();
             $table->string('numero_alta_contable')->nullable();
             $table->string('numero_contrato')->nullable();
             $table->string('numero_orden_reposicion')->nullable();
