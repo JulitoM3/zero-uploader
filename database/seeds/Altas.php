@@ -16,7 +16,7 @@ class Altas extends CsvSeeder
 
     public function __construct()
     {
-        $this->file = '/database/csvs/abastos/Altas_nacional.csv';
+        $this->file = '/database/csvs/abastos/altas.csv';
         $this->tablename = 'altas';
         $this->truncate = false;
 

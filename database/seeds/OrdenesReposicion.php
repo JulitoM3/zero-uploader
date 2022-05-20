@@ -15,7 +15,7 @@ class OrdenesReposicion extends CsvSeeder
 
     public function __construct()
     {
-        $this->file = '/database/csvs/abastos/test_ordenes_U210186.csv';
+        $this->file = '/database/csvs/abastos/ordenes.csv';
         $this->tablename = 'ordenes_reposicion';
         $this->truncate = false;
         $this->delimiter = '~';
