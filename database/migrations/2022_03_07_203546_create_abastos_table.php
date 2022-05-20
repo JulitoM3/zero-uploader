@@ -31,8 +31,8 @@ class CreateAbastosTable extends Migration
             $table->string('numero_proveedor')->nullable();
             $table->string('rfc_proveedor')->nullable();
             $table->string('razon_social')->nullable();
-            $table->date('fecha_inicio')->nullable();
-            $table->date('fecha_termino')->nullable();
+            $table->timestamp('fecha_inicio')->nullable();
+            $table->timestamp('fecha_termino')->nullable();
             $table->string('tipo_contrato')->nullable();
             $table->string('estado_contrato')->nullable();
             $table->string('estatus_clave')->nullable();
@@ -61,7 +61,7 @@ class CreateAbastosTable extends Migration
             $table->string('porcentaje_ejercido')->nullable();
             $table->string('porcentaje_topado')->nullable();
             $table->string('porcen_atencion_sin_transito')->nullable();
-            $table->date('fecha_dictamen')->nullable();
+            $table->timestamp('fecha_dictamen')->nullable();
             $table->decimal('saldo_disponible_dictamen_prei', 15, 2)->nullable();
             $table->decimal('monto_ejercido_dictamen_sai', 15, 2)->nullable();
             $table->decimal('saldo_disponible_dictamen_sai', 15, 2)->nullable();
