@@ -56,7 +56,7 @@ class CreateAltasTable extends Migration
             $table->string('partida_presupuestal')->nullable();
             $table->longText('tipo_error')->nullable();
             $table->string('enviado')->nullable();
-            $table->string('fecha_envio_pre')->nullable();
+            $table->string('fecha_envio_prei')->nullable();
 
             $table->unsignedBigInteger('contrato_id')->nullable();
             $table->unsignedBigInteger('orden_id')->nullable();
