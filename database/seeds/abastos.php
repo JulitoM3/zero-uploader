@@ -139,13 +139,13 @@ class abastos extends CsvSeeder
                 return $this->toDecimal($value);
             },
             'monto_ejercido_dictamen_sai' => function ($value) {
-                if ($value) {
+                if (!$value) {
                     return null;
                 }
                 return $this->toDecimal($value);
             },
             'saldo_disponible_dictamen_sai' => function ($value) {
-                if ($value) {
+                if (!$value) {
                     return null;
                 }
                 return $this->toDecimal($value);
