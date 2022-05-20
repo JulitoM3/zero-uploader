@@ -34,6 +34,10 @@ class abastos extends CsvSeeder
             'fecha_actualizacion' => function ($value) {
                 return $this->toTimeStamp($value);
             },
+
+            'monto_maximo_contrato_con_iva' => function ($value) {
+                return $this->toDecimal($value);
+            },
             'monto_minimo_contrato_con_iva' => function ($value) {
                 return $this->toDecimal($value);
             },
@@ -169,8 +173,8 @@ class abastos extends CsvSeeder
             'fecha_actualizacion',
             'numero_contrato',
             'numero_dictamen_definitivo',
-            'monto_maximo_con_iva',
-            'monto_minimo_con_iva',
+            'monto_maximo_contrato_con_iva',
+            'monto_minimo_contrato_con_iva',
             'monto_maximo_clave_con_iva',
             'monto_minimo_clave_con_iva',
             'numero_licitacion',
@@ -256,6 +260,7 @@ class abastos extends CsvSeeder
 
     public function toDecimal($value)
     {
+
         $number = 0;
         if (empty($value)) {
             return null;
@@ -269,7 +274,7 @@ class abastos extends CsvSeeder
 
             $number = $int + $decimal;
         } else {
-            $number = floatval($value);
+            $number = intval(str_replace(".", "", $value));
         }
 
         return $number;
