@@ -15,13 +15,17 @@ class OrdenesReposicion extends CsvSeeder
 
     public function __construct()
     {
-        $this->file = '/database/csvs/abastos/ordenes.csv';
+        $this->file = '/database/csvs/abastos/test_ordenes_U210186.csv';
         $this->tablename = 'ordenes_reposicion';
-        $this->truncate = true;
+        $this->truncate = false;
         $this->delimiter = '~';
-        $this->header = false;
+        $this->header = true;
         $this->parsers = [
             'fecha_actualizacion' => function ($value) {
+                if (empty($value)) {
+                    return null;
+                }
+                #cdd($value);
                 list($d, $m, $yearTime) = explode("/", $value);
                 list($year, $time) = explode(" ", $yearTime);
                 list($h, $min) = explode(":", $time);
@@ -30,9 +34,15 @@ class OrdenesReposicion extends CsvSeeder
                 return $timeStamp->toDateTimeString();
             },
             'fecha_inicio_contrato' => function ($value) { //date
+                if (empty($value)) {
+                    return null;
+                }
                 return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
             },
             'fecha_termino_contrato' => function ($value) { //date
+                if (empty($value)) {
+                    return null;
+                }
                 return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
             },
             'numero_contrato' => function ($value) {
@@ -188,8 +198,15 @@ class OrdenesReposicion extends CsvSeeder
                 if (empty($value)) {
                     return $value;
                 }
+
+
                 list($d, $m, $yearTime) = explode("/", $value);
-                list($year, $time) = explode(" ", $yearTime);
+
+                try {
+                    list($year, $time) = explode(" ", $yearTime);
+                } catch (\Exception $e) {
+                   $time = "0:0";
+                }
                 list($h, $min) = explode(":", $time);
 
                 $timeStamp = Carbon::create($year, $m, $d, $h, $min);

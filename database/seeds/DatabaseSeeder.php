@@ -1,6 +1,7 @@
 <?php
 
 use Database\Seeders\abastos;
+use Database\Seeders\Altas;
 use Database\Seeders\compranet_21;
 use Database\Seeders\compranet_22;
 use Database\Seeders\divisionContratos;
@@ -22,9 +23,10 @@ class DatabaseSeeder extends Seeder
             //\Database\Seeders\compranet_20::class,
             compranet_21::class,
             compranet_22::class,
-            divisionContratos::class,
             abastos::class,
-            OrdenesReposicion::class
+            OrdenesReposicion::class,
+            Altas::class,
+            divisionContratos::class,
         ]);
     }
 }

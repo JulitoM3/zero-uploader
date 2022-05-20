@@ -10,11 +10,11 @@ class compranet_22 extends CsvSeeder
 {
     public function __construct()
     {
-        $this->file = '/database/csvs/2022/Contratos2022.csv';
+        $this->file = '/database/csvs/2022/test_sicopu_U210186.csv';
         $this->tablename = 'compranet';
         $this->truncate = false;
         $this->delimiter = '~';
-        $this->header = false;
+        $this->header = true;
         $this->parsers = [
             'importe_contrato' => function ($value) {
                 $number = 0;

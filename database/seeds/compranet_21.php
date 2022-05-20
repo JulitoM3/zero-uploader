@@ -14,7 +14,7 @@ class compranet_21 extends CsvSeeder
         $this->tablename = 'compranet';
         $this->truncate = false;
         $this->delimiter = '~';
-        $this->header = false;
+        $this->header = true;
         $this->parsers = [
             'importe_contrato' => function ($value) {
                 $number = 0;

@@ -14,18 +14,18 @@ class abastos extends CsvSeeder
 
     public function __construct()
     {
-        $this->file = '/database/csvs/abastos/contratos.csv';
+        $this->file = '/database/csvs/abastos/test_articulos_U210186.csv';
 
         $this->tablename = 'abastos';
         $this->truncate = true;
         $this->delimiter = '~';
-        $this->header = false;
+        $this->header = true;
         $this->parsers = [
             'numero_contrato' => function ($value) {
                 $this->contrato_id = $value;
                 return $value;
             },
-            'id' => function ($value) {
+            'contrato_id' => function ($value) {
                 return Compranet::query()
                         ->where('numero_control_contrato', $this->contrato_id)
                         ->first(['id'])->id ?? null;
@@ -281,7 +281,7 @@ class abastos extends CsvSeeder
             'saldo_disponible_dictamen_sai',
             'monto_pagado',
             'iva',
-            'id'
+            'contrato_id'
         ];
         $this->chunk = 1000;
         /*dd($this->file);*/
