@@ -55,6 +55,48 @@ class NotasCredito extends CsvSeeder
             "cr_descuento",
             "cr_importe_pagado",
         ];
+
+        $this->parsers = [
+            'importe_aplicado' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'importe_original' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            "fecha_emision" => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            "fecha_documento" => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            "fecha_emision_original" => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            "fecha_documento_original" => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'bit_fecha_emision' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'bit_fecha_ultima_actualiz' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'cr_fecha_prog_pago' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            "cr_importe_mxn" => function ($value) {
+                return $this->toDecimal($value);
+            },
+            "cr_importe_bruto_a_pagar" => function ($value) {
+                return $this->toDecimal($value);
+            },
+            "cr_descuento" => function ($value) {
+                return $this->toDecimal($value);
+            },
+            "cr_importe_pagado" => function ($value) {
+                return $this->toDecimal($value);
+            },
+        ];
     }
 
     public function toTimeStamp($value)
