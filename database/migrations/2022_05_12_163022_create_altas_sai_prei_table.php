@@ -23,7 +23,7 @@ class CreateAltasSaiPreiTable extends Migration
             $table->string('alta_prei')->nullable();
             $table->string('alta_contable_sai')->nullable();
             $table->timestamp('fecha_alta')->nullable();
-            $table->string('numero_contrato')->nullable();
+            $table->string('numero_documento')->nullable();
             $table->longText('numero_proveedor')->nullable();
             $table->longText('razon_social')->nullable();
             $table->string('cargo_sai')->nullable();

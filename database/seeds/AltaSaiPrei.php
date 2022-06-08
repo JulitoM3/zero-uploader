@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Compranet;
+use App\OrdenReposicion;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +11,7 @@ use JeroenZwart\CsvSeeder\CsvSeeder;
 
 class AltaSaiPrei extends CsvSeeder
 {
+    private $contrato, $orden;
 
     public function __construct()
     {
@@ -21,7 +24,7 @@ class AltaSaiPrei extends CsvSeeder
             'alta_prei',
             'alta_contable_sai',
             'fecha_alta',
-            'numero_contrato',
+            'numero_documento',
             'numero_proveedor',
             'razon_social',
             'cargo_sai',
@@ -54,6 +57,14 @@ class AltaSaiPrei extends CsvSeeder
         ];
 
         $this->parsers = [
+            'numero_documento' => function ($value) {
+                $this->contrato = $value;
+                return $value;
+            },
+            'numero_reposicion' => function ($value) {
+                $this->orden = $value;
+                return $value;
+            },
             'fecha_alta' => function ($value) {
                 return $this->toTimeStamp($value);
             },
@@ -78,6 +89,12 @@ class AltaSaiPrei extends CsvSeeder
             'importe_conciliado' => function ($value) {
                 return $this->toDecimal($value);
             },
+            'contrato_id' => function ($value) {
+                return Compranet::where('numero_control_contrato', $this->contrato)->first(['id']) ?? null;
+            },
+            'orden_id' => function ($value) {
+                return OrdenReposicion::where('numero_de_orden_reposicion', $this->orden)->first(['id']) ?? null;
+            }
         ];
     }
 
