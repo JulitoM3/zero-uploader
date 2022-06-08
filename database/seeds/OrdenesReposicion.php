@@ -21,6 +21,10 @@ class OrdenesReposicion extends CsvSeeder
         $this->delimiter = '~';
         $this->header = true;
         $this->parsers = [
+            'numero_contrato' => function ($value) {
+                $this->contrato = $value;
+                return $value;
+            },
             'fecha_inicio_contrato' => function ($value) {
                 return $this->toTimeStamp($value);
             },
@@ -93,6 +97,9 @@ class OrdenesReposicion extends CsvSeeder
             'saldo_contrato_porcentaje' => function ($value) {
                 return $this->toDecimal($value);
             },
+            'contrato_id' => function ($value) {
+                return Compranet::where('numero_control_contrato', $this->contrato)->first(['id'])->id ?? null;
+            }
 
         ];
         $this->mapping = [
