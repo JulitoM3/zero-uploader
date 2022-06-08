@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use JeroenZwart\CsvSeeder\CsvSeeder;
 
 class Pagos extends CsvSeeder
@@ -61,6 +62,45 @@ class Pagos extends CsvSeeder
             'asiento_py',
             'fecha_asiento_py',
         ];
+
+        $this->parsers = [
+            'fecha_emision' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_contable' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_factura' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_prog_pago' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_pago' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            "fecha_asiento_ac" => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_asiento_py' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'importe_capturado' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'importe_mxn' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'importe_pagado' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'importe_bruto_pago' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'descuento' => function ($value) {
+                return $this->toDecimal($value);
+            },
+        ];
     }
 
     /**
@@ -70,6 +110,9 @@ class Pagos extends CsvSeeder
      */
     public function run()
     {
+// Recommended when importing larger CSVs
+        DB::disableQueryLog();
+        parent::run();
 
     }
 
