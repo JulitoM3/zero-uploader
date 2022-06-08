@@ -64,6 +64,12 @@ class CreatePagosTable extends Migration
                 ->references('id')
                 ->on('compranet');
 
+            $table->unsignedBigInteger('alta_id')->nullable();
+            $table->foreign('alta_id')
+                ->references('id')
+                ->on('altas_sai_prei');
+
+
             $table->timestamps();
         });
     }
