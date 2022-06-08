@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Compranet;
+use App\OrdenReposicion;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +11,7 @@ use JeroenZwart\CsvSeeder\CsvSeeder;
 
 class Pagos extends CsvSeeder
 {
+    private $contrato, $comprabante;
 
     public function __construct()
     {
@@ -17,6 +20,7 @@ class Pagos extends CsvSeeder
         $this->truncate = false;
         $this->delimiter = '~';
         $this->header = true;
+
         $this->mapping = [
             'un',
             'comprobante',
@@ -61,9 +65,19 @@ class Pagos extends CsvSeeder
             "fecha_asiento_ac",
             'asiento_py',
             'fecha_asiento_py',
+            'contrato_id',
+            'orden_id'
         ];
 
         $this->parsers = [
+            'contrato' => function ($value) {
+                $this->contrato = $value;
+                return $value;
+            },
+            'comprobante' => function ($value) {
+                $this->comprabante = $value;
+                return $value;
+            },
             'fecha_emision' => function ($value) {
                 return $this->toTimeStamp($value);
             },
@@ -99,6 +113,12 @@ class Pagos extends CsvSeeder
             },
             'descuento' => function ($value) {
                 return $this->toDecimal($value);
+            },
+            'contrato_id' => function ($value) {
+                return Compranet::where('numero_control_contrato', $this->contrato)->first(['id'])->id ?? null;
+            },
+            'alta_id' => function ($value) {
+                return \App\AltaSaiPrei::where('comprobante_pago', $this->comprabante)->first(['id'])->id ?? null;
             },
         ];
     }
