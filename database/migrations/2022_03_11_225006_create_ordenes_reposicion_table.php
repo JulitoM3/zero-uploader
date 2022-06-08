@@ -25,8 +25,8 @@ class CreateOrdenesReposicionTable extends Migration
             $table->longText('numero_licitacion')->nullable();
             $table->longText('numero_evento_compranet')->nullable();
             $table->longText('tipo_evento')->nullable();
-            $table->date('fecha_inicio_contrato')->nullable();
-            $table->date('fecha_termino_contrato')->nullable();
+            $table->timestamp('fecha_inicio_contrato')->nullable();
+            $table->timestamp('fecha_termino_contrato')->nullable();
             $table->decimal('monto_minimo_contrato_sin_iva', 15, 2)->nullable();
             $table->decimal('monto_maximo_contrato_sin_iva', 15, 2)->nullable();
             $table->bigInteger('cantidad_minima_piezas')->nullable();
@@ -51,9 +51,9 @@ class CreateOrdenesReposicionTable extends Migration
             $table->timestamp('fecha_expedicion')->nullable();
             $table->timestamp('fecha_www')->nullable();
             $table->timestamp('fecha_confirmacion')->nullable();
-            $table->date('fecha_entrega')->nullable();
-            $table->date('fecha_atencion')->nullable();
-            $table->date('fecha_sello_alta_qr')->nullable();
+            $table->timestamp('fecha_entrega')->nullable();
+            $table->timestamp('fecha_atencion')->nullable();
+            $table->timestamp('fecha_sello_alta_qr')->nullable();
             $table->timestamp('fecha_cancelacion')->nullable();
             $table->text('fecha_entrega_inicial')->nullable();
             $table->text('fecha_entrega_ampliada')->nullable();
@@ -72,7 +72,7 @@ class CreateOrdenesReposicionTable extends Migration
             $table->decimal('importe_atendido_sin_iva', 15, 2)->nullable();
             $table->decimal('saldo_contrato', 15, 2)->nullable();
             $table->decimal('saldo_contrato_porcentaje', 15, 2)->nullable();
-            $table->date('fecha_firma_contrato')->nullable();
+            $table->timestamp('fecha_firma_contrato')->nullable();
             $table->string('orden_resguardo')->nullable();
             $table->longText('clas_ptal_operador_logistico')->nullable();
             $table->longText('nombre_operador_logistico')->nullable();
