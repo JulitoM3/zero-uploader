@@ -37,7 +37,7 @@ class CreateAltasSaiPreiTable extends Migration
             $table->longText('descripcion_tipo_alta')->nullable();
             $table->longText('tipo_error')->nullable();
             $table->string('enviado')->nullable();
-            $table->string('fecha_envio');
+            $table->string('fecha_envio')->nullable();
             $table->string('numero_reposicion')->nullable();
             $table->timestamp('fecha_informacion_prei')->nullable();
             $table->string('ui_abono')->nullable();

@@ -97,6 +97,27 @@ class OrdenesReposicion extends CsvSeeder
             'saldo_contrato_porcentaje' => function ($value) {
                 return $this->toDecimal($value);
             },
+            'cantidad_minima_piezas' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'cantidad_maxima_piezas' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'cantidad_solicitada' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'cantidad_comprometida' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'cantidad_atendida' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'cantidad_alta_imss' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'cantidad_presentacion' => function ($value) {
+                return $this->toDecimal($value);
+            },
             'contrato_id' => function ($value) {
                 return Compranet::where('numero_control_contrato', $this->contrato)->first(['id'])->id ?? null;
             }
@@ -165,6 +186,7 @@ class OrdenesReposicion extends CsvSeeder
             'clas_ptal_operador_logistico',
             'nombre_operador_logistico',
             'zona_operador_logistico',
+
             'cantidad_alta_imss',
             'fecha_alta_imss',
             'contrato_id'

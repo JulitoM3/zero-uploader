@@ -16,7 +16,7 @@ class AltaSaiPrei extends CsvSeeder
     public function __construct()
     {
 
-        $this->file = '/database/csvs/prei/altas_sai_prei.csv';
+        $this->file = '/database/csvs/abastos/altas_sai_prei.csv';
         $this->tablename = 'altas_sai_prei';
         $this->truncate = false;
         $this->delimiter = '~';

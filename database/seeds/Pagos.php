@@ -16,7 +16,7 @@ class Pagos extends CsvSeeder
     public function __construct()
     {
         $this->file = '/database/csvs/prei/pagos.csv';
-        $this->tablename = 'altas';
+        $this->tablename = 'pagos';
         $this->truncate = false;
         $this->delimiter = '~';
         $this->header = true;

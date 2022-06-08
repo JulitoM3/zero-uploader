@@ -29,8 +29,8 @@ class CreateOrdenesReposicionTable extends Migration
             $table->timestamp('fecha_termino_contrato')->nullable();
             $table->decimal('monto_minimo_contrato_sin_iva', 15, 2)->nullable();
             $table->decimal('monto_maximo_contrato_sin_iva', 15, 2)->nullable();
-            $table->bigInteger('cantidad_minima_piezas')->nullable();
-            $table->bigInteger('cantidad_maxima_piezas')->nullable();
+            $table->decimal('cantidad_minima_piezas', 15, 2)->nullable();
+            $table->decimal('cantidad_maxima_piezas', 15, 2)->nullable();
             $table->decimal('monto_minimo_clave_sin_iva', 15, 2)->nullable();
             $table->decimal('monto_maximo_clave_sin_iva', 15, 2)->nullable();
             $table->string('numero_de_solicitud')->nullable();
@@ -43,7 +43,7 @@ class CreateOrdenesReposicionTable extends Migration
             $table->longText('var')->nullable();
             $table->longText('descripcion_articulo')->nullable();
             $table->string('unidad_presentacion')->nullable();
-            $table->integer('cantidad_presentacion')->nullable();
+            $table->decimal('cantidad_presentacion', 15, 2)->nullable();
             $table->string('tipo_presentacion')->nullable();
             $table->longText('razon_social')->nullable();
             $table->longText('rfc_proveedor')->nullable();
@@ -61,9 +61,9 @@ class CreateOrdenesReposicionTable extends Migration
             $table->longText('estatus_orden')->nullable();
             $table->decimal('precio_compra', 15, 2)->nullable();
             $table->longText('iva')->nullable();
-            $table->bigInteger('cantidad_solicitada')->nullable();
-            $table->bigInteger('cantidad_comprometida')->nullable();
-            $table->bigInteger('cantidad_atendida')->nullable();
+            $table->decimal('cantidad_solicitada', 15, 2)->nullable();
+            $table->decimal('cantidad_comprometida', 15, 2)->nullable();
+            $table->decimal('cantidad_atendida', 15, 2)->nullable();
             $table->decimal('importe_solicitado_iva', 15, 2)->nullable();
             $table->decimal('importe_comprometido_iva', 15, 2)->nullable();
             $table->decimal('importe_atendido_iva', 15, 2)->nullable();
@@ -77,7 +77,7 @@ class CreateOrdenesReposicionTable extends Migration
             $table->longText('clas_ptal_operador_logistico')->nullable();
             $table->longText('nombre_operador_logistico')->nullable();
             $table->longText('zona_operador_logistico')->nullable();
-            $table->bigInteger('cantidad_alta_imss')->nullable();
+            $table->decimal('cantidad_alta_imss', 15, 2)->nullable();
             $table->text('fecha_alta_imss')->nullable();
             $table->unsignedBigInteger('contrato_id')->nullable();
             $table->foreign('contrato_id')->references('id')->on('compranet');

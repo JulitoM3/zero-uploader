@@ -11,7 +11,7 @@ class NotasCredito extends CsvSeeder
 
     public function __construct()
     {
-        $this->file = '/database/csvs/prei/notas.csv';
+        $this->file = '/database/csvs/prei/notas_de_credito.csv';
         $this->tablename = 'notas_de_credito';
         $this->truncate = true;
         $this->delimiter = '~';

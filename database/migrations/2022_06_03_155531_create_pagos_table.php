@@ -14,7 +14,7 @@ class CreatePagosTable extends Migration
     public function up()
     {
         Schema::create('pagos', function (Blueprint $table) {
-            $table->id()->nullable();
+            $table->id();
             $table->string('un')->nullable();
             $table->string('comprobante')->nullable();
             $table->string('origen')->nullable();
