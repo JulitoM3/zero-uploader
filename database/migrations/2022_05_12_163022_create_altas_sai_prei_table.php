@@ -59,7 +59,7 @@ class CreateAltasSaiPreiTable extends Migration
             $table->unsignedBigInteger('contrato_id')->nullable();
             $table->foreign('contrato_id')->references('id')->on('compranet');
             $table->unsignedBigInteger('orden_id')->nullable();
-            $table->foreign('orden_id')->references('id')->on('ordenes_resposicion');
+            $table->foreign('orden_id')->references('id')->on('ordenes_reposicion');
             $table->timestamps();
         });
     }
