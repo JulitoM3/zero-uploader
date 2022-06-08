@@ -21,6 +21,7 @@ class CreateAltasSaiPreiTable extends Migration
             $table->longText('nombre_unidad')->nullable();
             $table->year('year')->nullable();
             $table->string('alta_prei')->nullable();
+            $table->string('alta_contable_sai')->nullable();
             $table->timestamp('fecha_alta')->nullable();
             $table->string('numero_contrato')->nullable();
             $table->longText('numero_proveedor')->nullable();
@@ -47,18 +48,18 @@ class CreateAltasSaiPreiTable extends Migration
             $table->string('cc_cargo')->nullable();
             $table->string('cuenta_cargo')->nullable();
 
-            $table->date('fecha_carga')->nullable();
+            $table->timestamp('fecha_carga')->nullable();
             $table->string('asiento')->nullable();
             $table->string('comprobante_prei')->nullable();
-            $table->date('fecha_introd_cr')->nullable();
+            $table->timestamp('fecha_introd_cr')->nullable();
             $table->string('estatus_alta_calculado')->nullable();
             $table->string('comprobante_pago')->nullable();
-            $table->date('fecha_programada_pago')->nullable();
+            $table->timestamp('fecha_programada_pago')->nullable();
             $table->string('estatus_pago_calculado')->nullable();
-
             $table->unsignedBigInteger('contrato_id')->nullable();
             $table->foreign('contrato_id')->references('id')->on('compranet');
-
+            $table->unsignedBigInteger('orden_id')->nullable();
+            $table->foreign('orden_id')->references('id')->on('ordenes_resposicion');
             $table->timestamps();
         });
     }

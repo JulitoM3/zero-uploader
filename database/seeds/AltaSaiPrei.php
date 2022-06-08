@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use JeroenZwart\CsvSeeder\CsvSeeder;
@@ -18,6 +19,7 @@ class AltaSaiPrei extends CsvSeeder
             'nombre_unidad',
             'year',
             'alta_prei',
+            'alta_contable_sai',
             'fecha_alta',
             'numero_contrato',
             'numero_proveedor',
@@ -49,9 +51,78 @@ class AltaSaiPrei extends CsvSeeder
             'comprobante_pago',
             'fecha_programada_pago',
             'estatus_pago_calculado',
-
-            'contrato_id',
         ];
+
+        $this->parsers = [
+            'fecha_alta' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_informacion_prei' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_carga' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_introd_cr' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'fecha_programada_pago' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'importe_sai' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'importe_prei' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'importe_conciliado' => function ($value) {
+                return $this->toDecimal($value);
+            },
+        ];
+    }
+
+
+    public function toTimeStamp($value)
+    {
+        if (empty($value)) {
+            return $value;
+        }
+
+
+        list($d, $m, $yearTime) = explode("/", $value);
+
+        try {
+            list($year, $time) = explode(" ", $yearTime);
+        } catch (\Exception $e) {
+            $time = "0:0";
+        }
+        list($h, $min) = explode(":", $time);
+
+        $timeStamp = Carbon::create($year, $m, $d, $h, $min);
+        return $timeStamp->toDateTimeString();
+    }
+
+
+    public function toDecimal($value)
+    {
+
+        $number = 0;
+        if (empty($value)) {
+            return null;
+        }
+
+        if (str_contains($value, ",")) {
+            list($int, $decimal) = explode(",", $value);
+
+            $int = intval(str_replace(".", '', $int));
+            $decimal = ("." . $decimal);
+
+            $number = $int + $decimal;
+        } else {
+            $number = intval(str_replace(".", "", $value));
+        }
+
+        return $number;
     }
 
     /**
