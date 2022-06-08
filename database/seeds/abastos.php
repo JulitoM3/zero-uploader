@@ -29,7 +29,6 @@ class abastos extends CsvSeeder
                 return Compranet::query()
                         ->where('numero_control_contrato', $this->contrato_id)
                         ->first(['id'])->id ?? null;
-
             },
             'fecha_actualizacion' => function ($value) {
                 return $this->toTimeStamp($value);
@@ -52,89 +51,51 @@ class abastos extends CsvSeeder
                 return $this->toTimeStamp($value);
             },
             'fecha_termino' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
+
                 return $this->toTimeStamp($value);
             },
             'precio_neto_contrato' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return floatval($value);
+
+                return $this->toDecimal($value);
             },
             'cantidad_maxima_clave' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return intval(str_replace(",", "", $value));
+
+                return $this->toDecimal($value);
             },
             'cantidad_contratacion_original' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return intval(str_replace(",", "", $value));
+
+                return $this->toDecimal($value);
 
             },
             'cantidad_minimo_clave' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return intval(str_replace(",", "", $value));
+
+                return $this->toDecimal($value);
 
             },
             'cantidad_ejercida_o_solicitada' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return intval(str_replace(",", "", $value));
+                return $this->toDecimal($value);
 
             },
             'cant_solic_vigente_en_transito' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return intval(str_replace(",", "", $value));
-
+                return $this->toDecimal($value);
             },
             'cantidad_disponible' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return intval(str_replace(",", "", $value));
-
+                return $this->toDecimal($value);
             },
             'cantidad_atendida' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return intval(str_replace(",", "", $value));
-
+                return $this->toDecimal($value);
             },
             'cantidad_de_piezas_topadas' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return intval(str_replace(",", "", $value));
-
+                return $this->toDecimal($value);
             },
             'porcentaje_ejercido' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return floatval($value);
+                return $this->toDecimal($value);
             },
             'porcentaje_topado' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return floatval($value);
+                return $this->toDecimal($value);
             },
             'porcen_atencion_sin_transito' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return floatval($value);
+                return $this->toDecimal($value);
             },
             'fecha_dictamen' => function ($value) {
                 return $this->toTimeStamp($value);
@@ -143,28 +104,19 @@ class abastos extends CsvSeeder
                 return $this->toDecimal($value);
             },
             'monto_ejercido_dictamen_sai' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
+
                 return $this->toDecimal($value);
             },
             'saldo_disponible_dictamen_sai' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
+
                 return $this->toDecimal($value);
             },
             'monto_pagado' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
+
                 return $this->toDecimal($value);
             },
             'iva' => function ($value) {
-                if (!$value) {
-                    return null;
-                }
-                return floatval($value);
+                return $this->toDecimal($value);
             }
         ];
         $this->mapping = [
