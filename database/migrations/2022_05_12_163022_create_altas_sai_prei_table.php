@@ -29,9 +29,9 @@ class CreateAltasSaiPreiTable extends Migration
             $table->string('cargo_sai')->nullable();
             $table->string('credito_sai')->nullable();
 
-            $table->decimal('importe_sai')->nullable();
-            $table->decimal('importe_prei')->nullable();
-            $table->decimal('importe_conciliado')->nullable();
+            $table->decimal('importe_sai', 15,2)->nullable();
+            $table->decimal('importe_prei', 15,2)->nullable();
+            $table->decimal('importe_conciliado', 15,2)->nullable();
 
             $table->string('tipo_alta')->nullable();
             $table->longText('descripcion_tipo_alta')->nullable();

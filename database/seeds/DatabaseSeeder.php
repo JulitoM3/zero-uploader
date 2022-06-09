@@ -24,14 +24,15 @@ class DatabaseSeeder extends Seeder
             //\Database\Seeders\compranet_19::class,
             //\Database\Seeders\compranet_20::class,
             compranet_21::class,
-            #compranet_22::class,
-            abastos::class,
+            //compranet_22::class,
             OrdenesReposicion::class,
             Altas::class,
             \Database\Seeders\AltaSaiPrei::class,
-            #divisionContratos::class,
+            divisionContratos::class,
             NotasCredito::class,
-            Pagos::class
+            Pagos::class,
+            abastos::class,
+
         ]);
     }
 }

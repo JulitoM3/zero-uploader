@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Compranet;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use JeroenZwart\CsvSeeder\CsvSeeder;
@@ -11,15 +12,16 @@ use JeroenZwart\CsvSeeder\CsvSeeder;
 class OrdenesReposicion extends CsvSeeder
 {
 
-    private $contrato;
+    private $contrato, $orden;
 
     public function __construct()
     {
-        $this->file = '/database/csvs/abastos/ordenes.csv';
+        $this->file = '/database/csvs/abastos/ordenesL.csv';
         $this->tablename = 'ordenes_reposicion';
         $this->truncate = false;
         $this->delimiter = '~';
         $this->header = true;
+        $this->chunk = 1;
         $this->parsers = [
             'numero_contrato' => function ($value) {
                 $this->contrato = $value;
@@ -120,6 +122,10 @@ class OrdenesReposicion extends CsvSeeder
             },
             'contrato_id' => function ($value) {
                 return Compranet::where('numero_control_contrato', $this->contrato)->first(['id'])->id ?? null;
+            },
+            'numero_de_orden_reposicion' => function ($value) {
+            $this->orden = $value;
+                return $value;
             }
 
         ];
@@ -222,15 +228,21 @@ class OrdenesReposicion extends CsvSeeder
             return null;
         }
 
-        if (str_contains($value, ",")) {
-            list($int, $decimal) = explode(",", $value);
+        if (str_contains($value, ".")) {
+            try {
+                list($int, $decimal) = explode(".", $value);
 
-            $int = intval(str_replace(".", '', $int));
-            $decimal = ("." . $decimal);
+                $int = intval(str_replace(",", '', $int));
+                $decimal = ("." . $decimal);
 
-            $number = $int + $decimal;
+                $number = $int + $decimal;
+            } catch (Exception $e) {
+                #dd($this->orden,$value, $int, $decimal);
+                dd($e->getMessage(), $e->getLine());
+            }
+
         } else {
-            $number = intval(str_replace(".", "", $value));
+            $number = intval(str_replace(",", "", $value));
         }
 
         return $number;

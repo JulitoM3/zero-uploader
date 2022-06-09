@@ -66,7 +66,7 @@ class Pagos extends CsvSeeder
             'asiento_py',
             'fecha_asiento_py',
             'contrato_id',
-            'orden_id'
+            'alta_id'
         ];
 
         $this->parsers = [

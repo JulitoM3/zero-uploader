@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use JeroenZwart\CsvSeeder\CsvSeeder;
 
 class NotasCredito extends CsvSeeder
@@ -81,6 +82,9 @@ class NotasCredito extends CsvSeeder
             'bit_fecha_ultima_actualiz' => function ($value) {
                 return $this->toTimeStamp($value);
             },
+            'cr_fecha_emision' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
             'cr_fecha_prog_pago' => function ($value) {
                 return $this->toTimeStamp($value);
             },
@@ -150,6 +154,7 @@ class NotasCredito extends CsvSeeder
      */
     public function run()
     {
-        //
+        DB::disableQueryLog();
+        parent::run();
     }
 }

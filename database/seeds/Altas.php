@@ -106,6 +106,15 @@ class Altas extends CsvSeeder
                 $this->orden = $value;
                 return $value;
             },
+            'cantidad_presentacion' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'cantidad_autorizada' => function ($value) {
+                return $this->toDecimal($value);
+            },
+            'cantidad_conteo' => function ($value) {
+                return $this->toDecimal($value);
+            },
             'contrato_id' => function ($value) {
                 $contrato = Compranet::query()->where('numero_control_contrato', $this->contrato)->first(['id']);
                 return $contrato->id ?? null;

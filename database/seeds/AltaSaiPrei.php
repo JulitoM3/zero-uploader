@@ -60,6 +60,8 @@ class AltaSaiPrei extends CsvSeeder
             'comprobante_pago',
             'fecha_programada_pago',
             'estatus_pago_calculado',
+            'contrato_id',
+            'orden_id'
         ];
 
         $this->parsers = [
@@ -96,10 +98,11 @@ class AltaSaiPrei extends CsvSeeder
                 return $this->toDecimal($value);
             },
             'contrato_id' => function ($value) {
-                return Compranet::where('numero_control_contrato', $this->contrato)->first(['id']) ?? null;
+                return Compranet::where('numero_control_contrato', $this->contrato)->first(['id'])->id ?? null;
             },
             'orden_id' => function ($value) {
-                return OrdenReposicion::where('numero_de_orden_reposicion', $this->orden)->first(['id']) ?? null;
+
+                return OrdenReposicion::where('numero_de_orden_reposicion', $this->orden)->first(['id'])->id ?? null;
             }
         ];
     }

@@ -35,13 +35,13 @@ class CreateAltasTable extends Migration
             $table->longText('var')->nullable();
             $table->longText('descripcion_articulo')->nullable();
             $table->string('unidad_presentacion')->nullable();
-            $table->integer('cantidad_presentacion')->nullable();
+            $table->decimal('cantidad_presentacion',15,2)->nullable();
             $table->string('tipo_presentacion')->nullable();
             $table->decimal('precio_catalogo_articulos', 15, 2)->nullable();
             $table->decimal('precio_compra', 15, 2)->nullable();
             $table->decimal('iva', 15, 2)->nullable();
-            $table->integer('cantidad_autorizada')->nullable();
-            $table->integer('cantidad_conteo')->nullable();
+            $table->decimal('cantidad_autorizada',15,2)->nullable();
+            $table->decimal('cantidad_conteo',15,2)->nullable();
             $table->decimal('importe_articulo_sin_iva', 15, 2)->nullable();
             $table->decimal('importe_alta_iva', 15, 2)->nullable();
             $table->string('linea_articulo')->nullable();
