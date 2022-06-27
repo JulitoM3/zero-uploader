@@ -16,7 +16,7 @@ class OrdenesReposicion extends CsvSeeder
 
     public function __construct()
     {
-        $this->file = '/database/csvs/abastos/ordenesL.csv';
+        $this->file = '/database/csvs/abastos/ordenes.csv';
         $this->tablename = 'ordenes_reposicion';
         $this->truncate = false;
         $this->delimiter = '~';
@@ -228,21 +228,21 @@ class OrdenesReposicion extends CsvSeeder
             return null;
         }
 
-        if (str_contains($value, ".")) {
+        if (str_contains($value, ",")) {
             try {
-                list($int, $decimal) = explode(".", $value);
+                list($int, $decimal) = explode(",", $value);
 
-                $int = intval(str_replace(",", '', $int));
+                $int = intval(str_replace(".", '', $int));
                 $decimal = ("." . $decimal);
 
                 $number = $int + $decimal;
             } catch (Exception $e) {
                 #dd($this->orden,$value, $int, $decimal);
-                dd($e->getMessage(), $e->getLine());
+                dd($value,$e->getMessage(), $e->getLine());
             }
 
         } else {
-            $number = intval(str_replace(",", "", $value));
+            $number = intval(str_replace(".", "", $value));
         }
 
         return $number;
