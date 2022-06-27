@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Compranet;
 use App\OrdenReposicion;
+use App\Pago;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class Pagos extends CsvSeeder
 
     public function __construct()
     {
-        $this->file = '/database/csvs/prei/pagos.csv';
+        $this->file = '/database/csvs/prei/Pagos.csv';
         $this->tablename = 'pagos';
         $this->truncate = false;
         $this->delimiter = '~';
@@ -73,7 +74,8 @@ class Pagos extends CsvSeeder
             'contrato' => function ($value) {
                 $this->contrato = $value;
                 return $value;
-            },
+            }
+            ,
             'comprobante' => function ($value) {
                 $this->comprabante = $value;
                 return $value;
