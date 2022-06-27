@@ -40,6 +40,7 @@ class CreateNotasDeCreditoTable extends Migration
             $table->string('cr_tipo_cr')->nullable();
             $table->timestamp('cr_fecha_emision')->nullable();
             $table->timestamp('cr_fecha_prog_pago')->nullable();
+            $table->timestamp('cr_fecha_pago')->nullable();
             $table->decimal("cr_importe_mxn", 15, 2)->nullable();
             $table->string("cr_moneda")->nullable();
             $table->string('cr_cierre_manual')->nullable();
