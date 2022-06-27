@@ -29,10 +29,9 @@ class DatabaseSeeder extends Seeder
             Altas::class,
             \Database\Seeders\AltaSaiPrei::class,
             divisionContratos::class,
-            NotasCredito::class,
             Pagos::class,
+            NotasCredito::class,
             abastos::class,
-
         ]);
     }
 }

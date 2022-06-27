@@ -53,6 +53,12 @@ class CreateNotasDeCreditoTable extends Migration
             $table->decimal("cr_importe_bruto_a_pagar", 15, 2)->nullable();
             $table->decimal("cr_descuento", 15, 2)->nullable();
             $table->decimal("cr_importe_pagado", 15, 2)->nullable();
+
+            $table->unsignedBigInteger('pago_id')->nullable();
+            $table->foreign('pago_id')
+                ->references('id')
+                ->on('pagos');
+
             $table->timestamps();
         });
     }
