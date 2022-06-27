@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Pago;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -9,10 +10,12 @@ use JeroenZwart\CsvSeeder\CsvSeeder;
 
 class NotasCredito extends CsvSeeder
 {
+    private $comprobante = null;
 
     public function __construct()
     {
-        $this->file = '/database/csvs/prei/notas_de_credito.csv';
+
+        $this->file = '/database/csvs/prei/Notas de credito.csv';
         $this->tablename = 'notas_de_credito';
         $this->truncate = true;
         $this->delimiter = '~';
@@ -43,6 +46,7 @@ class NotasCredito extends CsvSeeder
             'cr_tipo_cr',
             'cr_fecha_emision',
             'cr_fecha_prog_pago',
+            'cr_fecha_pago',
             "cr_importe_mxn",
             "cr_moneda",
             'cr_cierre_manual',
@@ -55,9 +59,20 @@ class NotasCredito extends CsvSeeder
             "cr_importe_bruto_a_pagar",
             "cr_descuento",
             "cr_importe_pagado",
+            "pago_id",
         ];
 
         $this->parsers = [
+            'cr_comprobante' => function ($value) {
+                $this->comprobante = $value;
+                return $value;
+            },
+            'pago_id' => function ($value) {
+                $pago = Pago::where('comprobante', $this->comprobante)->first(['id']);
+                return $pago->id ?? null;
+
+
+            },
             'importe_aplicado' => function ($value) {
                 return $this->toDecimal($value);
             },
@@ -83,6 +98,9 @@ class NotasCredito extends CsvSeeder
                 return $this->toTimeStamp($value);
             },
             'cr_fecha_emision' => function ($value) {
+                return $this->toTimeStamp($value);
+            },
+            'cr_fecha_pago' => function ($value) {
                 return $this->toTimeStamp($value);
             },
             'cr_fecha_prog_pago' => function ($value) {
