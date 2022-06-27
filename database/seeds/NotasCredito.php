@@ -53,6 +53,7 @@ class NotasCredito extends CsvSeeder
             'cr_estado_cierre',
             'cr_estado_entrada',
             'cr_estado_presupuesto',
+            'cr_estado_aprobacion',
             'cr_estado_contabilizacion',
             'cr_estado_pago',
             'cr_hoja_de_pago',
