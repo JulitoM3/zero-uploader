@@ -15,6 +15,7 @@ class CreateOrdenesReposicionTable extends Migration
     {
         Schema::create('ordenes_reposicion', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo')->nullable();
             $table->longText('clas_ptal_origen')->nullable();
             $table->longText('nombre_ooad')->nullable();
             $table->longText('id_ooad')->nullable();

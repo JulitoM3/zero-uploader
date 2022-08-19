@@ -130,6 +130,7 @@ class OrdenesReposicion extends CsvSeeder
 
         ];
         $this->mapping = [
+            'tipo',
             'clas_ptal_origen',
             'nombre_ooad',
             'id_ooad',
