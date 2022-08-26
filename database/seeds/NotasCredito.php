@@ -72,8 +72,7 @@ class NotasCredito extends CsvSeeder
                 $pago = Pago::where('comprobante', $this->comprobante)->first(['id']);
                 return $pago->id ?? null;
 
-
-            },
+                },
             'importe_aplicado' => function ($value) {
                 return $this->toDecimal($value);
             },
