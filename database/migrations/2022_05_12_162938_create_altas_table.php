@@ -22,7 +22,7 @@ class CreateAltasTable extends Migration
             $table->longText('clas_ptal_entrega')->nullable();
             $table->longText('nombre_unidad_entrega')->nullable();
             $table->longText('tipo_reporte')->nullable();
-            $table->string('numero_alta_contable')->nullable();
+            $table->string('numero_alta_contable')->primary();
             $table->string('numero_contrato')->nullable();
             $table->string('numero_orden_reposicion')->nullable();
             $table->string('cargo_a')->nullable();
@@ -35,13 +35,13 @@ class CreateAltasTable extends Migration
             $table->longText('var')->nullable();
             $table->longText('descripcion_articulo')->nullable();
             $table->string('unidad_presentacion')->nullable();
-            $table->decimal('cantidad_presentacion',15,2)->nullable();
+            $table->decimal('cantidad_presentacion', 15, 2)->nullable();
             $table->string('tipo_presentacion')->nullable();
             $table->decimal('precio_catalogo_articulos', 15, 2)->nullable();
             $table->decimal('precio_compra', 15, 2)->nullable();
             $table->decimal('iva', 15, 2)->nullable();
-            $table->decimal('cantidad_autorizada',15,2)->nullable();
-            $table->decimal('cantidad_conteo',15,2)->nullable();
+            $table->decimal('cantidad_autorizada', 15, 2)->nullable();
+            $table->decimal('cantidad_conteo', 15, 2)->nullable();
             $table->decimal('importe_articulo_sin_iva', 15, 2)->nullable();
             $table->decimal('importe_alta_iva', 15, 2)->nullable();
             $table->string('linea_articulo')->nullable();
@@ -61,8 +61,13 @@ class CreateAltasTable extends Migration
             $table->unsignedBigInteger('contrato_id')->nullable();
             $table->unsignedBigInteger('orden_id')->nullable();
 
-            $table->foreign('contrato_id')->references('id')->on('compranet');
-            $table->foreign('orden_id')->references('id')->on('ordenes_reposicion');
+            $table->foreign('contrato_id')->references('id')->on('compranet')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('orden_id')->references('id')->on('ordenes_reposicion')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

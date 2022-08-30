@@ -35,7 +35,7 @@ class CreateCompranetTable extends Migration
             $table->string('tipo_de_contratacion')->nullable();
             $table->string('tipo_procedimiento')->nullable();
             $table->string('medio_utilizado_propuestas')->nullable();
-            $table->string('codigo_contrato')->nullable();
+            $table->string('codigo_contrato')->unique();
             $table->string('numero_control_contrato')->nullable();
             $table->longText('titulo_contrato')->nullable();
             $table->longText('descripcion_contrato')->nullable();

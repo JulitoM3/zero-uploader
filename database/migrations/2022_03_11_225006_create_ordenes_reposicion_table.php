@@ -15,7 +15,6 @@ class CreateOrdenesReposicionTable extends Migration
     {
         Schema::create('ordenes_reposicion', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo')->nullable();
             $table->longText('clas_ptal_origen')->nullable();
             $table->longText('nombre_ooad')->nullable();
             $table->longText('id_ooad')->nullable();
@@ -35,7 +34,7 @@ class CreateOrdenesReposicionTable extends Migration
             $table->decimal('monto_minimo_clave_sin_iva', 15, 2)->nullable();
             $table->decimal('monto_maximo_clave_sin_iva', 15, 2)->nullable();
             $table->string('numero_de_solicitud')->nullable();
-            $table->string('numero_de_orden_reposicion')->nullable();
+            $table->string('numero_de_orden_reposicion')->primary();
             $table->longText('origen')->nullable();
             $table->longText('gpo')->nullable();
             $table->longText('gen')->nullable();
@@ -81,7 +80,9 @@ class CreateOrdenesReposicionTable extends Migration
             $table->decimal('cantidad_alta_imss', 15, 2)->nullable();
             $table->text('fecha_alta_imss')->nullable();
             $table->unsignedBigInteger('contrato_id')->nullable();
-            $table->foreign('contrato_id')->references('id')->on('compranet');
+            $table->foreign('contrato_id')->references('id')->on('compranet')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');;
             $table->timestamps();
         });
     }

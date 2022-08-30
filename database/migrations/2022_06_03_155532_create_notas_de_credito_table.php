@@ -16,7 +16,7 @@ class CreateNotasDeCreditoTable extends Migration
         Schema::create('notas_de_credito', function (Blueprint $table) {
             $table->id();
             $table->string('un_nc')->nullable();
-            $table->string('nota_de_credito')->nullable();
+            $table->string('nota_de_credito')->primary();
             $table->string('secuencia')->nullable();
             $table->string('no_proveedor')->nullable();
             $table->string('origen')->nullable();
@@ -58,7 +58,9 @@ class CreateNotasDeCreditoTable extends Migration
             $table->unsignedBigInteger('pago_id')->nullable();
             $table->foreign('pago_id')
                 ->references('id')
-                ->on('pagos');
+                ->on('pagos')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

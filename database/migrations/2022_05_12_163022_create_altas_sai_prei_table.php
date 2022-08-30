@@ -20,8 +20,8 @@ class CreateAltasSaiPreiTable extends Migration
             $table->longText('clas_ptal')->nullable();
             $table->longText('nombre_unidad')->nullable();
             $table->year('year')->nullable();
-            $table->string('alta_prei')->nullable();
-            $table->string('alta_contable_sai')->nullable();
+            $table->string('alta_prei')->primary();
+            $table->string('alta_contable_sai')->primary();
             $table->timestamp('fecha_alta')->nullable();
             $table->string('numero_documento')->nullable();
             $table->longText('numero_proveedor')->nullable();
@@ -29,9 +29,9 @@ class CreateAltasSaiPreiTable extends Migration
             $table->string('cargo_sai')->nullable();
             $table->string('credito_sai')->nullable();
 
-            $table->decimal('importe_sai', 15,2)->nullable();
-            $table->decimal('importe_prei', 15,2)->nullable();
-            $table->decimal('importe_conciliado', 15,2)->nullable();
+            $table->decimal('importe_sai', 15, 2)->nullable();
+            $table->decimal('importe_prei', 15, 2)->nullable();
+            $table->decimal('importe_conciliado', 15, 2)->nullable();
 
             $table->string('tipo_alta')->nullable();
             $table->longText('descripcion_tipo_alta')->nullable();
@@ -57,9 +57,13 @@ class CreateAltasSaiPreiTable extends Migration
             $table->timestamp('fecha_programada_pago')->nullable();
             $table->string('estatus_pago_calculado')->nullable();
             $table->unsignedBigInteger('contrato_id')->nullable();
-            $table->foreign('contrato_id')->references('id')->on('compranet');
+            $table->foreign('contrato_id')->references('id')->on('compranet')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('orden_id')->nullable();
-            $table->foreign('orden_id')->references('id')->on('ordenes_reposicion');
+            $table->foreign('orden_id')->references('id')->on('ordenes_reposicion')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

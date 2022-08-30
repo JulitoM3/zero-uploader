@@ -16,7 +16,7 @@ class CreatePagosTable extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
             $table->string('un')->nullable();
-            $table->string('comprobante')->nullable();
+            $table->string('comprobante')->primary();
             $table->string('origen')->nullable();
             $table->string('usuario')->nullable();
             $table->string('tipo_cbte')->nullable();
@@ -62,12 +62,16 @@ class CreatePagosTable extends Migration
             $table->unsignedBigInteger('contrato_id')->nullable();
             $table->foreign('contrato_id')
                 ->references('id')
-                ->on('compranet');
+                ->on('compranet')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
             $table->unsignedBigInteger('alta_id')->nullable();
             $table->foreign('alta_id')
                 ->references('id')
-                ->on('altas_sai_prei');
+                ->on('altas_sai_prei')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
 
             $table->timestamps();
