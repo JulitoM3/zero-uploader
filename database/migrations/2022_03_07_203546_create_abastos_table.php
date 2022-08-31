@@ -18,7 +18,7 @@ class CreateAbastosTable extends Migration
             $table->string('clas_ptal_origen')->nullable();
             $table->string('ooad')->nullable();
             $table->timestamp('fecha_actualizacion')->nullable();
-            $table->string('numero_contrato')->primary();
+            $table->string('numero_contrato');
             $table->string('numero_dictamen_definitivo')->nullable();
             $table->decimal('monto_maximo_contrato_con_iva', 20, 2)->nullable();
             $table->decimal('monto_minimo_contrato_con_iva', 20, 2)->nullable();
@@ -36,11 +36,11 @@ class CreateAbastosTable extends Migration
             $table->string('tipo_contrato')->nullable();
             $table->string('estado_contrato')->nullable();
             $table->string('estatus_clave')->nullable();
-            $table->string('gpo')->primary();
-            $table->string('gen')->primary();
-            $table->string('esp')->primary();
-            $table->string('dif')->primary();
-            $table->string('var')->primary();
+            $table->string('gpo');
+            $table->string('gen');
+            $table->string('esp');
+            $table->string('dif');
+            $table->string('var');
             $table->longText('descripcion_articulo')->nullable();
             $table->string('unidad_presentacion')->nullable();
             $table->string('cantidad_presentacion')->nullable();
@@ -72,6 +72,7 @@ class CreateAbastosTable extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
 
+            $table->unique(['numero_contrato', 'precio_neto_contrato']);
             $table->timestamps();
         });
     }

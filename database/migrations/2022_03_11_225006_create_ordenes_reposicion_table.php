@@ -34,7 +34,7 @@ class CreateOrdenesReposicionTable extends Migration
             $table->decimal('monto_minimo_clave_sin_iva', 15, 2)->nullable();
             $table->decimal('monto_maximo_clave_sin_iva', 15, 2)->nullable();
             $table->string('numero_de_solicitud')->nullable();
-            $table->string('numero_de_orden_reposicion')->primary();
+            $table->string('numero_de_orden_reposicion')->unique();
             $table->longText('origen')->nullable();
             $table->longText('gpo')->nullable();
             $table->longText('gen')->nullable();

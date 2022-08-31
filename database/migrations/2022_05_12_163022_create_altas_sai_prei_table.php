@@ -20,8 +20,8 @@ class CreateAltasSaiPreiTable extends Migration
             $table->longText('clas_ptal')->nullable();
             $table->longText('nombre_unidad')->nullable();
             $table->year('year')->nullable();
-            $table->string('alta_prei')->primary();
-            $table->string('alta_contable_sai')->primary();
+            $table->string('alta_prei');
+            $table->string('alta_contable_sai');
             $table->timestamp('fecha_alta')->nullable();
             $table->string('numero_documento')->nullable();
             $table->longText('numero_proveedor')->nullable();
@@ -65,6 +65,7 @@ class CreateAltasSaiPreiTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamps();
+            $table->unique(['alta_prei', 'alta_contable_sai']);
         });
     }
 

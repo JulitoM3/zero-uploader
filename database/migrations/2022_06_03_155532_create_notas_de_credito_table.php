@@ -16,7 +16,7 @@ class CreateNotasDeCreditoTable extends Migration
         Schema::create('notas_de_credito', function (Blueprint $table) {
             $table->id();
             $table->string('un_nc')->nullable();
-            $table->string('nota_de_credito')->primary();
+            $table->string('nota_de_credito')->unique();
             $table->string('secuencia')->nullable();
             $table->string('no_proveedor')->nullable();
             $table->string('origen')->nullable();

@@ -22,7 +22,7 @@ class CreateAltasTable extends Migration
             $table->longText('clas_ptal_entrega')->nullable();
             $table->longText('nombre_unidad_entrega')->nullable();
             $table->longText('tipo_reporte')->nullable();
-            $table->string('numero_alta_contable')->primary();
+            $table->string('numero_alta_contable')->unique();
             $table->string('numero_contrato')->nullable();
             $table->string('numero_orden_reposicion')->nullable();
             $table->string('cargo_a')->nullable();
